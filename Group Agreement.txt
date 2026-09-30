@@ -1,0 +1,27 @@
+Group Agreement
+
+How work will be divided:
+Work will be divided by tasks. Each person will agree to complete a task and is the main worker for that task. But, if help is needed, they can ask for assistance.
+
+How group members will communicate:
+We will communicate primarily on Discord and through GitHub projects.
+
+Expected response times:
+Expect a response within 24 hours.
+
+How deadlines will be handled:
+Deadlines will be set when tasks are created.
+
+What happens if someone cannot complete their assigned work:
+If someone cannot complete their work, let everyone know BEFORE the deadline so that others can assist. This ensures that the work gets done even if one person can't do it.
+
+How disagreements will be resolved:
+If there is a disagreement between members, the outcome will be decided by a vote. At the moment, we have 4 people to a 3-1 vote will need to be achieved.
+
+When/how you will meet outside of class if necessary:
+We can meet either online on Discord or in the library on campus at a scheduled time.
+
+Who will be responsible for final submissions:
+The repo owner (Dominic) is most likely responsible but anyone can submit.
+
+Signed off by: Dominic Ricci, 
