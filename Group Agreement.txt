@@ -24,4 +24,4 @@ We can meet either online on Discord or in the library on campus at a scheduled 
 Who will be responsible for final submissions:
 The repo owner (Dominic) is most likely responsible but anyone can submit.
 
-Signed off by: Dominic Ricci, 
+Signed off by: Dominic Ricci, Dylan Hancock
