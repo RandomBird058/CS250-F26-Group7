@@ -1,0 +1,2 @@
+# CS250-F26-Group7
+Group 7 for CS250
