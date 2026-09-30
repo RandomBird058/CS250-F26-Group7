@@ -4,3 +4,4 @@ Group 7 for CS250
 Collaborators:
 Dylan Hancock
 Ryder Rocha
+Dominic Ricci
