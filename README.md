@@ -5,6 +5,7 @@ Collaborators:
 Dylan Hancock
 Ryder Rocha
 Dominic Ricci
+Alex Hardy
 
 Software System:
 "Unstable Bluff" Detection System
