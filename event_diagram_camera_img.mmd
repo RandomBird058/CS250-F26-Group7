@@ -1,0 +1,20 @@
+eventmodeling
+
+
+%% tf 01 ui ShopUI
+%% tf 02 cmd AddItemToCart
+%% tf 03 evt ItemAdded
+%% tf 04 rmo CartView ->> 03
+%% tf 05 ui CheckoutUI
+%% tf 06 cmd PlaceOrder
+%% tf 07 evt OrderPlaced
+%% tf 08 rmo OrderStatus ->> 07
+  tf 01 event ImgPost [[ImgPost]]
+  tf 02 cmd EvalRisk
+
+  tf 03 event Alarm
+  tf 04 pcr StoreData ->> 02
+
+
+
+%% tf 02 
