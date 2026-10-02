@@ -1,9 +1,9 @@
 classDiagram
    
-   ImageCapture --> CameraListener
+   ImageCapture --> CameraInterface
     Config --> ImageCapture
    Config <-- CameraConfig
-   CameraListener --> EvaluationSystem
+   CameraInterface --> EvaluationSystem
    EvaluationSystem --> AlarmSystem
 
    namespace Camera {
@@ -32,7 +32,7 @@ classDiagram
     }
 
     namespace System {
-        class CameraListener {
+        class CameraInterface {
             +receive_post(image: Image) void
             -send_to_processor(image: Image) void
         }

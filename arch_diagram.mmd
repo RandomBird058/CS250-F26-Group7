@@ -13,7 +13,7 @@ architecture-beta
     service cam(internet)[Camera]
 
     group backend(server)[Server]
-    service camService(server)[Camera Listener] in backend
+    service camService(server)[Camera Interface] in backend
     service imgReader(server)[Image Processor] in backend
     service camControl(server)[Camera Config] in backend
     service alarms(internet)[Alarm System] in backend
