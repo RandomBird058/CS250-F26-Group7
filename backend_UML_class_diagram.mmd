@@ -1,9 +1,16 @@
 classDiagram
-    namespace Camera {
-        class ImageCapture {
-            -timer: Timer
-            -geolocation: GeoLocation
-            -time: TimeStamp
+   
+   ImageCapture --> CameraListener
+    Config --> ImageCapture
+   Config <-- CameraConfig
+   CameraListener --> EvaluationSystem
+   EvaluationSystem --> AlarmSystem
+
+   namespace Camera {
+    class ImageCapture {
+        -timer: Timer
+        -geolocation: GeoLocation
+        -time: TimeStamp
 
             +take_picture() Image
             +post_image(image: Image) void
@@ -15,13 +22,11 @@ classDiagram
             -resolution: Array[width, height]
             -is_color: bool
             -interval: int
-            -greyscale: bool
             -night_vision: bool
 
             +get_resolution() Array[width, height]
             +get_color() bool
             +get_interval() int
-            +get_greyscale() bool
             +get_night_vision() bool
         }
     }
@@ -36,19 +41,23 @@ classDiagram
             -resolution: Array[width, height]
             -is_color: bool
             -interval: int
-            -greyscale: bool
             -night_vision: bool
 
             +update_resolution(resolution: Array[int, int]) void
             +update_interval(interval: int) void
             +set_color(is_color: bool) void
-            +set_greyscale(greyscale: bool) void
             +set_night_vision(night_vision: bool) void
         }
 
+        class EvaluationSystem {
+            +get_image() Image
+            +evaluate_image(image: Image) void
+            +send_alarm(severity: int, location: GeoLocation, time: TimeStamp)
+
+        }
+
         class AlarmSystem {
+            +recieve_alarm(severity: int, location: GeoLocation, time: TimeStamp)
             +broadcast_alarm(severity: int, location: GeoLocation, time: TimeStamp)
         }
     }
-
-    ImageCapture -- CameraListener
