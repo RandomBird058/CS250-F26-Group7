@@ -1,0 +1,18 @@
+classDiagram
+    class CameraListener {
+        +recieve_post(image: Image, timestamp: TiemStamp, location: GeoLocation) void
+        -send_to_processor(image: Image, timestamp: TiemStamp, location: GeoLocation) void
+    }
+
+    class CameraConfig {
+        -resoultion: Array[width, height]
+        -is_color: bool
+        -interval: int
+        +update_resolution(resolution: Array[int, int]) void
+        +update_interval(int: interval) void
+        +set_color(bool: is_color) void
+    }
+
+    class AlarmSystem {
+        +broadcast_alarm(severity: int, location: GeoLocation, time: TimeStamp)
+    }
