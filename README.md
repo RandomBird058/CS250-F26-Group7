@@ -6,6 +6,7 @@ Dylan Hancock,
 Ryder Rocha,
 Dominic Ricci,
 Alex Hardy
+Ryan Kotas
 
 Software System:
 "Unstable Bluff" Detection System
