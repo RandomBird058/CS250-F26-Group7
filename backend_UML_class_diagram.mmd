@@ -1,18 +1,54 @@
 classDiagram
-    class CameraListener {
-        +recieve_post(image: Image, timestamp: TiemStamp, location: GeoLocation) void
-        -send_to_processor(image: Image, timestamp: TiemStamp, location: GeoLocation) void
+    namespace Camera {
+        class ImageCapture {
+            -timer: Timer
+            -geolocation: GeoLocation
+            -time: TimeStamp
+
+            +take_picture() Image
+            +post_image(image: Image) void
+            +get_time() TimeStamp
+            +get_geolocation() GeoLocation
+        }
+
+        class Config {
+            -resolution: Array[width, height]
+            -is_color: bool
+            -interval: int
+            -greyscale: bool
+            -night_vision: bool
+
+            +get_resolution() Array[width, height]
+            +get_color() bool
+            +get_interval() int
+            +get_greyscale() bool
+            +get_night_vision() bool
+        }
     }
 
-    class CameraConfig {
-        -resoultion: Array[width, height]
-        -is_color: bool
-        -interval: int
-        +update_resolution(resolution: Array[int, int]) void
-        +update_interval(int: interval) void
-        +set_color(bool: is_color) void
+    namespace System {
+        class CameraListener {
+            +receive_post(image: Image) void
+            -send_to_processor(image: Image) void
+        }
+
+        class CameraConfig {
+            -resolution: Array[width, height]
+            -is_color: bool
+            -interval: int
+            -greyscale: bool
+            -night_vision: bool
+
+            +update_resolution(resolution: Array[int, int]) void
+            +update_interval(interval: int) void
+            +set_color(is_color: bool) void
+            +set_greyscale(greyscale: bool) void
+            +set_night_vision(night_vision: bool) void
+        }
+
+        class AlarmSystem {
+            +broadcast_alarm(severity: int, location: GeoLocation, time: TimeStamp)
+        }
     }
 
-    class AlarmSystem {
-        +broadcast_alarm(severity: int, location: GeoLocation, time: TimeStamp)
-    }
+    ImageCapture -- CameraListener
