@@ -1,0 +1,39 @@
+architecture-beta
+    %% group api(cloud)[API]
+
+    %% service db(database)[Database] in api
+    %% service disk1(disk)[Storage] in api
+    %% service disk2(disk)[Storage] in api
+    %% service server(server)[Server] in api
+
+    %% db:L -- R:server
+    %% disk1:T -- B:server
+    %% disk2:T -- B:db
+
+    service cam(internet)[Camera]
+
+    group backend(server)[Server]
+    service camService(server)[Camera Listener] in backend
+    service imgReader(server)[Image Processor] in backend
+    service camControl(server)[Camera Config] in backend
+    service alarms(internet)[Alarm System] in backend
+    service cleaner(server)[Data Cleanup] in backend
+
+    group storage(cloud)[Storage] in backend
+    service db(database)[Database] in storage
+    service disk1(disk)[Storage] in storage
+    service disk2(disk)[Backup] in storage
+
+    cam:B --> T:camService
+    camService:B --> T:imgReader
+    imgReader:L --> R:alarms
+    %% alarms:T --> B:camService
+
+    imgReader:B --> T:db
+    cleaner:B -- R:db
+
+    db:B -- T:disk1
+    db:B -- T:disk2
+    disk1:R -- L:disk2
+
+    camControl:T <-- B:cam
