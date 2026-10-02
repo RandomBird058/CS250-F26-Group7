@@ -1,0 +1,20 @@
+flowchart TD
+    Plan["Planning(IDE/Programming Languages/APIs)"]
+    Build1[Build Camera System]
+    Build2[Build Server Interface]
+    Test[Test System]
+    Evaluate[Evaluate System is Sufficient]
+    IterateBuild[Build Based on Evaluation]
+    Launch[Launch System for Use]
+    Maintain[Maintain System During Use]
+    Prototype[Prototype for Cellular Implementation]
+   
+   Plan --> Build1
+   Build1 --> Build2
+   Build2 --> Test
+   Test --> Evaluate
+   Evaluate --Insufficient--> IterateBuild
+   IterateBuild --> Test
+   Evaluate --Sufficient---> Launch
+   Launch --> Maintain
+   Launch --> Prototype

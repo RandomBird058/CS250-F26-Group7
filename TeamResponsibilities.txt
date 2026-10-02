@@ -1,0 +1,15 @@
+Manager (Dominic)
+- Facilitates team communication
+- Helps and give guidance where needed
+
+Camera Team (Dylan, Ryder)
+- Plans the infastructure (IDE/programming languages/ etc.) before development
+- Builds the camera classes based on the design document
+- Tests the camera's functionality independently of the backend
+- Tests the camera's functionality regarding communication with the backend
+
+Backend Team (Alex, Ryan)
+- Plans the infastructure (IDE/programming languages/HTTP requests/ etc.) before development
+- Builds the backend based on the design document
+- Tests the backend before connecting with the camera
+- Tests compatability with the camera
