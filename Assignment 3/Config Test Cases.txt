@@ -1,0 +1,99 @@
+Unit
+
+What we are testing: update_resolution() in Camera Config
+
+# Making test values
+test_width: int = 10
+test_height: int = 10
+
+CameraConfig.update_resolution(test_width, test_height)
+
+# Test bounds
+if CameraConfig.width <= 0 or CameraConfig.height <= 0:
+	return FAIL
+
+# Test if values were copied correctly
+if CameraConfig.width != test_width or CameraConfig.height != test_height:
+	return FAIL
+
+return PASS
+
+
+What we are testing: update_interval() in CameraConfig
+
+CameraConfig.update_interval(60)
+
+# Test if interval is less than or equal to zero
+if CameraConfig.interval <= 0:
+    return FAIL
+else:
+    return PASS
+
+
+What we are testing: set_color() in CamerConfig
+
+CameraConfig.set_color(true)
+
+# Test if color was updated correctly
+if CameraConfig.color is true:
+    return PASS
+else:
+    return FAIL
+
+
+What we are testing: set_night_vision() in CameraConfig
+
+CameraConfig.set_night_vision(true)
+
+# Test if night vision is updated correctly
+if CameraConfig.night_vision is true:
+    return PASS
+else:
+    return FAIL
+
+
+Integration
+
+What we are testing: Getting updated config settings from the server's CameraConfig in the camera's Config
+
+## On Server Side
+# Create test variables
+test_resolution: Array[int] = [100, 100]
+
+test_color: bool = false
+
+test_night_vision: bool = false
+
+test_interval: int = 10
+
+
+# Set the values in CameraConfig
+CameraConfig.update_resolution(test_resolution)
+
+CameraConfig.set_color(test_color)
+
+CameraConfig.set_night_vision(test_night_vision)
+
+CameraConfig.update_interval(interval)
+
+
+## On Camera Side
+# Ensure the camera can access the new values
+if Config.get_resolution() != test_resolution:
+	return FAIL
+
+if Config.get_color() != test_color:
+	return FAIL
+
+if Config.get_interval() != test_interval:
+	return FAIL
+
+if Config.get_night_vision() != test_night_vision:
+	return FALSE
+
+return PASS
+
+
+System
+
+A user updates the values in CameraConfig on the server. Then, once the camera takes a picture, they are able to view the picture and verify that the picture was taken with the new config settings.
