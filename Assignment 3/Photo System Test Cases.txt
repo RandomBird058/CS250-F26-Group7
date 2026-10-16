@@ -1,7 +1,8 @@
 Unit
 
-What we are testing: Getting time from get_time() in ImageCapture
-
+"""
+This unit test tests the functionality of get_time() in ImageCapture. The test checks if the timestamp stored after get_time() is called has been properly received. This test is necessary in order to ensure that a timestamp is received, so that a time can be input into the images data. 
+"""
 # Get a timestamp
 time: TimeStamp = ImageCapture.get_time()
 
@@ -12,7 +13,9 @@ if time is null:
 return PASS
 
 
-What we are testing: Getting geolocation from get_geolocation() in ImageCapture
+"""
+This unit test tests the functionality of get_geolocation() in ImageCapture. The test checks if the location stored after get_geolocation() is called has been properly received by ImageCapture. This test is necessary in order to ensure that a geolocation is received, so that a location can be input into the images data. 
+"""
 
 # Get geolocation
 geolocation: GeoLocation = ImageCapture.get_geolocation()
@@ -28,6 +31,11 @@ Integration
 
 What we are testing: Sending an image over wifi from ImageCapture to CameraInterface
 
+"""
+This integration test checks the ability of a camera to properly take a photo and remotely send an image to the server's CameraInterface. The test begins right after ImageCaptures take_picture() is called, which tests if the image has properly been captured. After this process, CameraInterface tests if the image sent after post_image() call has been properly received. 
+
+These tests are necessary to ensure that the functions in ImageCapture and CameraInterface properly work across WiFi, with any errors in both the taking and the sending of a photo getting caught, which ensures that the image is captured successfully and sent through the database to warn of any potential changes. 
+""" 
 
 # Testing ImageCapture functions
 # Capture an image

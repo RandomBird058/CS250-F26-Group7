@@ -1,6 +1,10 @@
-Unit
+Unit Tests:
 
-What we are testing: update_resolution() in Camera Config
+"""
+This unit test tests two components of update_resolution() in CameraConfig. The first test checks the lower bounds of any width and height inputted to ensure that no measurement is less than or equal to zero. The second test then checks if the resolution measurements that were stored into CameraConfig copied over successfully.
+
+The first test is necessary in order to first check if the input provided by the user is possible to implement for the resolution, as zero and lower could error the image capture software when inputted into the resolution. The second test is also necessary to confirm that the resolution config has been copied over successfully. 
+"""
 
 # Making test values
 test_width: int = 10
@@ -12,25 +16,38 @@ CameraConfig.update_resolution(test_width, test_height)
 if CameraConfig.width <= 0 or CameraConfig.height <= 0:
 	return FAIL
 
-# Test if values were copied correctly
+# Test if values were copied over correctly
 if CameraConfig.width != test_width or CameraConfig.height != test_height:
 	return FAIL
 
 return PASS
 
 
-What we are testing: update_interval() in CameraConfig
+"""
+This unit test tests two components of update_interval() in CameraConfig. The first test checks the lower bounds of any int inputted to ensure that no measurement is less than or equal to zero. The second test then checks if the interval that was stored into CameraConfig copied over successfully.
 
-CameraConfig.update_interval(60)
+The first test is necessary in order to first check if the input provided by the user is possible to implement for the interval, as zero and lower could error the image capture software when inputted into the config. The second test is also necessary to confirm that the interval has been copied over successfully. 
+"""
+
+# Test interval to input into the config
+test_interval: int = 60
+
+CameraConfig.update_interval(test_interval)
 
 # Test if interval is less than or equal to zero
 if CameraConfig.interval <= 0:
     return FAIL
-else:
-    return PASS
+
+# Test if interval was copied over correctly
+if CameraConfig.interval != test_interval:
+	return FAIL
+
+return PASS
 
 
-What we are testing: set_color() in CamerConfig
+"""
+This unit test tests one component of set_color() in CameraConfig. The test checks if the Boolean provided by the user in set_color() was updated correctly in CameraConfig. This test is necessary to ensure that the boolean was properly updated, as the wrong setting would cause the image capture software to improperly take photos with the wrong filter on.
+"""
 
 CameraConfig.set_color(true)
 
@@ -41,7 +58,9 @@ else:
     return FAIL
 
 
-What we are testing: set_night_vision() in CameraConfig
+"""
+This unit test tests one component of set_night_vision() in CameraConfig. The test checks if the Boolean provided by the user in set_night_vision() was updated correctly in CameraConfig. This test is necessary to ensure that the boolean was properly updated, as night vision enabled/disabled at a certain hour would cause images captured to be difficult to process.
+"""
 
 CameraConfig.set_night_vision(true)
 
@@ -54,7 +73,13 @@ else:
 
 Integration
 
-What we are testing: Getting updated config settings from the server's CameraConfig in the camera's Config
+"""
+This integration test checks the ability of a camera's config to remotely obtain updated configurations from the server's CameraConfig. We test all four configurations located in both configs: resolution, color, night_vision, and interval. 
+
+Once any of the four variables in CameraConfig on server are updated, camera's Config will then remotely update its values with user values. After this process is run, it compares its values against user values to ensure that they've properly copied over. 
+
+This is important to ensure that Config hasn't improperly stored any values that aren't what the user intends, keeping all cameras consistent with the settings inputted by user.
+""" 
 
 ## On Server Side
 # Create test variables
