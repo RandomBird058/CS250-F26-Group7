@@ -12,7 +12,7 @@ CameraConfig.update_resolution(test_width, test_height)
 if CameraConfig.width <= 0 or CameraConfig.height <= 0:
 	return FAIL
 
-# Test values were copied correctly
+# Test if values were copied correctly
 if CameraConfig.width != test_width or CameraConfig.height != test_height:
 	return FAIL
 
@@ -23,6 +23,7 @@ What we are testing: update_interval() in CameraConfig
 
 CameraConfig.update_interval(60)
 
+# Test if interval is less than or equal to zero
 if CameraConfig.interval <= 0:
     return FAIL
 else:
@@ -33,6 +34,7 @@ What we are testing: set_color() in CamerConfig
 
 CameraConfig.set_color(true)
 
+# Test if color was updated correctly
 if CameraConfig.color is true:
     return PASS
 else:
@@ -43,6 +45,7 @@ What we are testing: set_night_vision() in CameraConfig
 
 CameraConfig.set_night_vision(true)
 
+# Test if night vision is updated correctly
 if CameraConfig.night_vision is true:
     return PASS
 else:
