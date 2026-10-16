@@ -1,0 +1,49 @@
+Unit
+
+What we are testing: If 
+
+Integration
+
+What we are testing: Getting updated config settings from the server's CameraConfig in the camera's Config
+
+## On Server Side
+# Create test variables
+test_resolution: Array[int] = [100, 100]
+
+test_color: bool = false
+
+test_night_vision: bool = false
+
+test_interval: int = 10
+
+
+# Set the values in CameraConfig
+CameraConfig.update_resolution(test_resolution)
+
+CameraConfig.set_color(test_color)
+
+CameraConfig.set_night_vision(test_night_vision)
+
+CameraConfig.update_interval(interval)
+
+
+## On Camera Side
+# Ensure the camera can access the new values
+if Config.get_resolution() != test_resolution:
+	return FAIL
+
+if Config.get_color() != test_color:
+	return FAIL
+
+if Config.get_interval() != test_interval:
+	return FAIL
+
+if Config.get_night_vision() != test_night_vision:
+	return FALSE
+
+return PASS
+
+
+System
+
+A user updates the values in CameraConfig on the server. Then, once the camera takes a picture, they are able to view the picture and verify that the picture was taken with the new config settings.

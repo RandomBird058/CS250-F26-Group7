@@ -1,9 +1,9 @@
 Unit
 
-What we are testing: Getting time from get_time()
+What we are testing: Getting time from get_time() in ImageCapture
 
 # Get a timestamp
-time: TimeStamp = get_time()
+time: TimeStamp = ImageCapture.get_time()
 
 # Ensure you got a timestamp
 if time is null:
@@ -13,10 +13,10 @@ return PASS
 
 
 
-What we are testing: Getting geolocation from get_geolocation()
+What we are testing: Getting geolocation from get_geolocation() in ImageCapture
 
 # Get geolocation
-geolocation: GeoLocation = get_geolocation()
+geolocation: GeoLocation = ImageCapture.get_geolocation()
 
 # Ensure you got geolocation
 if geolocation is null:
@@ -24,9 +24,6 @@ if geolocation is null:
 
 return PASS
 
-
-
-What we are testing: If Timer is sending a signal to take a picture every time interval
 
 
 Integration
