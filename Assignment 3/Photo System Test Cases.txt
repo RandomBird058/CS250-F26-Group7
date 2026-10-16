@@ -1,0 +1,65 @@
+Unit
+
+What we are testing: Getting time from get_time()
+
+# Get a timestamp
+time: TimeStamp = get_time()
+
+# Ensure you got a timestamp
+if time is null:
+	return FAIL
+
+return PASS
+
+
+
+What we are testing: Getting geolocation from get_geolocation()
+
+# Get geolocation
+geolocation: GeoLocation = get_geolocation()
+
+# Ensure you got geolocation
+if geolocation is null:
+	return FAIL
+
+return PASS
+
+
+
+What we are testing: If Timer is sending a signal to take a picture every time interval
+
+
+Integration
+
+What we are testing: Sending an image over wifi from ImageCapture to CameraInterface
+
+
+# Testing ImageCapture functions
+# Capture an image
+image: Image = ImageCapture.take_picture()
+
+# Ensure the image was captured
+if image is null:
+	return FAIL
+
+# Send the image to the CameraInterface
+ImageCapture.post_image(image)
+
+
+# Testing CameraInterface functions
+# Wait for the image to be processed
+time.sleep(100)
+
+# Ensure the CameraInterface received an image by checking for it in the database
+if EvaluationSystem.get_image(image) is null:
+	return FAIL
+
+return PASS
+
+
+System
+
+
+What we are testing: The workflow from the camera taking a picture all the way to sounding the alarm. We are ensuring that if the camera takes a picture with an alarming state to the bluff, the alarm sounds.
+
+The camera takes a picture of the bluff in a bad condition (Or we feed it an alarming image). The camera then sends the picture over wifi to the camera interface in the server. The interface sends the image to the evaluation system. The evaluation system sounds the alarm and sends an alert to all subscribed.
