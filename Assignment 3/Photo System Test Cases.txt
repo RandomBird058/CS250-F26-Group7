@@ -12,7 +12,6 @@ if time is null:
 return PASS
 
 
-
 What we are testing: Getting geolocation from get_geolocation() in ImageCapture
 
 # Get geolocation
@@ -23,7 +22,6 @@ if geolocation is null:
 	return FAIL
 
 return PASS
-
 
 
 Integration

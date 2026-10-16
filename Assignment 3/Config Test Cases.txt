@@ -1,6 +1,53 @@
 Unit
 
-What we are testing: If 
+What we are testing: update_resolution() in Camera Config
+
+# Making test values
+test_width: int = 10
+test_height: int = 10
+
+CameraConfig.update_resolution(test_width, test_height)
+
+# Test bounds
+if CameraConfig.width <= 0 or CameraConfig.height <= 0:
+	return FAIL
+
+# Test values were copied correctly
+if CameraConfig.width != test_width or CameraConfig.height != test_height:
+	return FAIL
+
+return PASS
+
+
+What we are testing: update_interval() in CameraConfig
+
+CameraConfig.update_interval(60)
+
+if CameraConfig.interval <= 0:
+    return FAIL
+else:
+    return PASS
+
+
+What we are testing: set_color() in CamerConfig
+
+CameraConfig.set_color(true)
+
+if CameraConfig.color is true:
+    return PASS
+else:
+    return FAIL
+
+
+What we are testing: set_night_vision() in CameraConfig
+
+CameraConfig.set_night_vision(true)
+
+if CameraConfig.night_vision is true:
+    return PASS
+else:
+    return FAIL
+
 
 Integration
 
