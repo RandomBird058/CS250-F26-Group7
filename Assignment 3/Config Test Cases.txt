@@ -1,9 +1,13 @@
 Unit Tests:
 
+
+
 """
 This unit test tests two components of update_resolution() in CameraConfig. The first test checks the lower bounds of any width and height inputted to ensure that no measurement is less than or equal to zero. The second test then checks if the resolution measurements that were stored into CameraConfig copied over successfully.
 
 The first test is necessary in order to first check if the input provided by the user is possible to implement for the resolution, as zero and lower could error the image capture software when inputted into the resolution. The second test is also necessary to confirm that the resolution config has been copied over successfully. 
+
+The expected output is a resolution that equals the valid input provided. A test fails if an invalid resolution is inputted, or a value was stored incorrectly. 
 """
 
 # Making test values
@@ -27,6 +31,8 @@ return PASS
 This unit test tests two components of update_interval() in CameraConfig. The first test checks the lower bounds of any int inputted to ensure that no measurement is less than or equal to zero. The second test then checks if the interval that was stored into CameraConfig copied over successfully.
 
 The first test is necessary in order to first check if the input provided by the user is possible to implement for the interval, as zero and lower could error the image capture software when inputted into the config. The second test is also necessary to confirm that the interval has been copied over successfully. 
+
+The expected output is an interval that equals the valid input provided. A test fails if an invalid interval is inputted, or a value was stored incorrectly.
 """
 
 # Test interval to input into the config
@@ -47,29 +53,45 @@ return PASS
 
 """
 This unit test tests one component of set_color() in CameraConfig. The test checks if the Boolean provided by the user in set_color() was updated correctly in CameraConfig. This test is necessary to ensure that the boolean was properly updated, as the wrong setting would cause the image capture software to improperly take photos with the wrong filter on.
+
+The expected output is the stored Boolean equaling the input. The test fails if a Boolean setting does not change after input.  
+
 """
 
+# First test, checking if true
 CameraConfig.set_color(true)
-
 # Test if color was updated correctly
-if CameraConfig.color is true:
-    return PASS
-else:
+for CameraConfig.color != true:
     return FAIL
+
+# Second test, checking if false
+CameraConfig.set_color(false)
+# Test if color was updated correctly
+for CameraConfig.color != false:
+    return FAIL
+
+return PASS
 
 
 """
 This unit test tests one component of set_night_vision() in CameraConfig. The test checks if the Boolean provided by the user in set_night_vision() was updated correctly in CameraConfig. This test is necessary to ensure that the boolean was properly updated, as night vision enabled/disabled at a certain hour would cause images captured to be difficult to process.
+
+The expected output is the stored Boolean equaling the input. The test fails if a Boolean setting does not change after input.  
 """
 
+# First test, checking if true
 CameraConfig.set_night_vision(true)
-
 # Test if night vision is updated correctly
-if CameraConfig.night_vision is true:
-    return PASS
-else:
+if CameraConfig.night_vision != true:
     return FAIL
 
+# Second test, checking if false
+CameraConfig.set_night_vision(false)
+# Test if night vision is updated correctly
+if CameraConfig.night_vision != false:
+    return FAIL
+
+return PASS
 
 Integration
 
@@ -77,6 +99,8 @@ Integration
 This integration test checks the ability of a camera's config to remotely obtain updated configurations from the server's CameraConfig. We test all four configurations located in both configs: resolution, color, night_vision, and interval. 
 
 Once any of the four variables in CameraConfig on server are updated, camera's Config will then remotely update its values with user values. After this process is run, it compares its values against user values to ensure that they've properly copied over. 
+
+The expected output is that Config returns exactly the values set on the server. It fails if any value is missing or incorrect from the user-inputted values. 
 
 This is important to ensure that Config hasn't improperly stored any values that aren't what the user intends, keeping all cameras consistent with the settings inputted by user.
 """ 
