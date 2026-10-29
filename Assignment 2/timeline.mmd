@@ -1,20 +1,19 @@
 flowchart TD
-    Plan["Planning(IDE/Programming Languages/APIs)"]
-    Build1[Build Camera System]
-    Build2[Build Server Interface]
-    Test[Test System]
-    Evaluate[Evaluate System is Sufficient]
-    IterateBuild[Build Based on Evaluation]
-    Launch[Launch System for Use]
-    Maintain[Maintain System During Use]
-    Prototype[Prototype for Cellular Implementation]
-   
+    Plan["Planning(IDE/Programming Languages/APIs)" <br> 10/15/2026]
+    Build1[Build Camera System <br> 10/20/2026]
+    Build2[Build Server Interface <br> 10/28/2026]
+    Test["Test System (First Deliverable)<br> 11/15/2026 "]
+    Evaluate@{ shape: notch-pent, label: " Builds Based On Evaluations <br> 11/31/2026 " }
+    Launch["Launch System for Use <br> 1/15/2027"]
+    Maintain[Maintain System During Use <br> 1/15/2027]
+    Prototype[Prototype for Cellular Implementation <br> 1/15/2027 ]
+    
+  
+
    Plan --> Build1
    Build1 --> Build2
    Build2 --> Test
    Test --> Evaluate
-   Evaluate --Insufficient--> IterateBuild
-   IterateBuild --> Test
-   Evaluate --Sufficient---> Launch
+   Evaluate --> Launch
    Launch --> Maintain
    Launch --> Prototype
