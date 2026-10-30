@@ -21,7 +21,7 @@ architecture-beta
 
     group storage(cloud)[Storage] in backend
     service metadata(database)[Metadata SQL DB] in storage
-    service imageStore(database)[Riak Image DB] in storage
+    service imageStore(database)[OpenRiak Image DB] in storage
     %% service disk1(disk)[Storage] in storage
     %% service disk2(disk)[Backup] in storage
 
