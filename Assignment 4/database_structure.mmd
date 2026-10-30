@@ -1,0 +1,36 @@
+---
+config:
+  layout: elk
+---
+erDiagram
+    Metadata || -- || Image : indexes
+    Metadata {
+      int image_id PK
+      varchar camera_id
+      varchar image_key FK,UK "keys to the OpenRiak DB. Should be fixed length"
+      datetime taken_at
+      decimal latitude
+      decimal longitude
+    }
+
+    Image {
+      varchar image_key PK
+      blob image
+    }
+    
+
+    %% BluffChange {
+    %%   varchar image_old_id FK "When oldest image deleted, clean this record"
+    %%   varchar image_new_id FK
+    %%   int change_intensity
+    %% }
+
+    %% Metadata ||--|{ BluffChange : "helps clean"
+
+    %% CameraConfig {
+    %%   varchar camera_id PK
+    %%   time image_frequency
+    %%   %% Unclear what other image specifications
+    %%   %% need to be controlled via control commands.
+    %%   %% clarify with client.
+    %% }
